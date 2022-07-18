@@ -1,31 +1,33 @@
-import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, ImageList, ImageListItem, Link, Typography } from "@mui/material";
 import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import React, { Fragment, useState } from "react";
+import { useRouter } from "next/router";
+import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import FavoriteButton from "../../components/FavoriteButton";
-import { serverUrl } from "../../config";
 import { getLife } from "../../firebase/life.firestore";
-import { ILife } from "../../models/Life";
 
 const Life: NextPage = ({ lifeData }: any) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Fragment>
       <BackButton />
       <FavoriteButton lifeId={lifeData.id} />
-      {/* <Box>
-        <Typography component="h1">{lifeData.french_common_name}</Typography>
-        <Typography
-          component="caption"
-          color="text.secondary"
-          sx={{
-            fontStyle: "italic",
-          }}
-        >
-          {lifeData.scientific_name}
-        </Typography>
-      </Box> */}
+      <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <Typography
+        component="caption"
+        color="text.secondary"
+        sx={{
+          fontStyle: "italic",
+        }}
+      >
+        {lifeData.scientific_name}
+      </Typography>
       <Link
         href={lifeData.wikipedia_url}
         target="_blank"
@@ -49,16 +51,25 @@ const Life: NextPage = ({ lifeData }: any) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.id;
-
-  const lifeData = await getLife(id.toString());
-
-  return {
-    props: {
-      lifeData,
-    },
-  };
-};
-
 export default Life;
+
+export async function getStaticProps({ params }: any) {
+  const { id } = params;
+
+  try {
+    const lifeData = await getLife(id.toString());
+    return lifeData ? { props: { lifeData } } : { notFound: true };
+  } catch (error) {
+    // The Twitter API most likely died
+    console.error(error);
+    return { notFound: true };
+  }
+}
+
+export async function getStaticPaths() {
+  // ...
+
+  // fallback: true means that the missing pages
+  // will not 404, and instead can render a fallback.
+  return { paths: [] as string[], fallback: true };
+}
