@@ -19,17 +19,18 @@ export function AuthContextProvider({ children }: any) {
     let unsubscribe;
 
     unsubscribe = onAuthStateChanged(auth, async (user) => {
-      const userData = await getUser(user.email) as IUser;
-      if (!userData) {
-        const newUserData: IUser = { email: user.email, favorites: [] }
-        await createUser(newUserData, user.email);
-        await setUserData(newUserData)
-      } else {
-        await setUserData(userData)
+      if (user) {
+        const userData = (await getUser(user.email)) as IUser;
+        if (!userData) {
+          const newUserData: IUser = { email: user.email, favorites: [] };
+          await createUser(newUserData, user.email);
+          await setUserData(newUserData);
+        } else {
+          await setUserData(userData);
+        }
+        setUser(user);
+        setLoading(false);
       }
-
-      setUser(user);
-      setLoading(false);
     });
 
     return unsubscribe;
