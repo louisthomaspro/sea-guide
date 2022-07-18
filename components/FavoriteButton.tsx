@@ -6,15 +6,15 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, IconButton, Snackbar } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect } from "react";
+import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import AuthContext from "../context/auth.context";
 import { signInWithGoogle } from "../firebase/auth";
 import { addFavorite, removeFavorite } from "../firebase/user.firestore";
 import { IFavorite, IUser } from "../models/User";
 
 export default function FavoriteButton(props: any) {
-  const [open, setOpen] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { user, userData, loading } = useContext(AuthContext);
 
   const addToFavorite = () => {
@@ -39,7 +39,7 @@ export default function FavoriteButton(props: any) {
     setOpen(true);
   };
   const handleClose = (
-    event?: React.SyntheticEvent | Event,
+    event?: SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {

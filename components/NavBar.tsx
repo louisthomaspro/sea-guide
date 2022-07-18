@@ -8,11 +8,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import ExploreIcon from "@mui/icons-material/Explore";
 import Paper from "@mui/material/Paper";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function NavBar() {
   const router = useRouter();
-  const firstPath = router.pathname.split('/')[1];
-  const [activeTab, setActiveTab] = React.useState(firstPath);
+  const firstPath = router.pathname.split("/")[1];
+  const [activeTab, setActiveTab] = useState(firstPath);
 
   return (
     <Paper

@@ -8,7 +8,7 @@ const Document = () => (
         content="Build a PWA to achieve 100% in Google Lighthouse and Next.js Analytics"
       />
 
-      <meta name="theme-color" content="#333333" />
+      <meta name="theme-color" content="#000000" />
       <meta name="referrer" content={"strict-origin"} />
 
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />

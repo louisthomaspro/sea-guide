@@ -12,7 +12,7 @@ const nextConfig = withPWA({
   },
   reactStrictMode: false,
   redirects: async () => {
-    return [{ source: "/", destination: "/profile", permanent: true }];
+    return [{ source: "/", destination: "/search", permanent: true }];
   },
 });
 

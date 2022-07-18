@@ -16,7 +16,7 @@ const Life: NextPage = ({ lifeData }: any) => {
       <Box>
         <Typography component="h1">{lifeData.french_common_name}</Typography>
         <Typography
-          variant="caption"
+          component="caption"
           color="text.secondary"
           sx={{
             "font-style": "italic",
@@ -51,9 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id!;
   console.log(id);
 
-  const lifeData = await getLife(id.toString()).then((doc) => {
-    return doc as ILife;
-  });
+  const lifeData = await getLife(id.toString())
 
   return {
     props: {
