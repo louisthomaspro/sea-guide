@@ -14,7 +14,7 @@ const Life: NextPage = ({ lifeData }: any) => {
   }
 
   return (
-    <Fragment><BackButton />Hello</Fragment>
+    <Fragment><BackButton />Hello {JSON.stringify(lifeData)}</Fragment>
     // <Fragment>
     //   {lifeData ? (
     //     <Fragment>
@@ -60,11 +60,9 @@ const Life: NextPage = ({ lifeData }: any) => {
 export default Life;
 
 export async function getStaticProps({ params }: any) {
-  const { id } = params;
-
   try {
     // const lifeData = await getLife(id.toString());
-    const lifeData: any = null;
+    const lifeData: any = params.id;
     return { props: { lifeData } };
   } catch (error) {
     console.error(error);
