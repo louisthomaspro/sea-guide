@@ -11,6 +11,7 @@ const Document = () => (
       <meta name="theme-color" content="#000000" />
       <meta name="referrer" content={"strict-origin"} />
 
+      <link rel="manifest" href="/manifest.json" />
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       <link
@@ -20,8 +21,6 @@ const Document = () => (
         sizes="512x512"
       />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
-
-      <link rel="manifest" href="/site.webmanifest" />
     </Head>
     <body>
       <Main />
