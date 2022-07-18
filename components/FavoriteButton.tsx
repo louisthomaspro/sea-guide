@@ -6,7 +6,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, IconButton, Snackbar } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
+import React, { Fragment, SyntheticEvent, useContext, useEffect, useState } from "react";
 import AuthContext from "../context/auth.context";
 import { signInWithGoogle } from "../firebase/auth";
 import { addFavorite, removeFavorite } from "../firebase/user.firestore";
@@ -56,21 +56,17 @@ export default function FavoriteButton(props: any) {
   };
 
   useEffect(() => {
-    console.log("ici")
-    console.log(userData)
     if (userData) {
-      console.log(props.lifeId)
       if (
         userData.favorites.some((el) => (el === props.lifeId))
       ) {
-        console.log('here')
         setIsFavorite(true);
       }
     }
   }, [userData, user, loading]);
 
   const action = (
-    <Box>
+    <Fragment>
       <Button color="secondary" size="small" onClick={signIn}>
         SIGN IN
       </Button>
@@ -82,11 +78,11 @@ export default function FavoriteButton(props: any) {
       >
         <CloseIcon fontSize="small" />
       </IconButton>
-    </Box>
+    </Fragment>
   );
 
   return (
-    <Box>
+    <Fragment>
       <IconButton aria-label="favorite" onClick={addToFavorite}>
         {isFavorite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
@@ -97,6 +93,6 @@ export default function FavoriteButton(props: any) {
         message="Sign in needed for favorite featuer"
         action={action}
       />
-    </Box>
+    </Fragment>
   );
 }

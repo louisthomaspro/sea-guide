@@ -37,7 +37,6 @@ export const setLifeFromINaturalist = async (inaturalistId: string) => {
     conservation_status: data.conservation_status?.status ?? null,
   };
   (data.taxon_photos as any[]).forEach((element) => {
-    console.log(element);
     lifeData.photos.push({
       medium_url: element.photo.medium_url,
       id: element.photo.id,

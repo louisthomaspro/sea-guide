@@ -67,8 +67,8 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
                       component="div"
                       sx={{
                         overflow: "hidden",
-                        "white-space": "nowrap",
-                        "text-overflow": "ellipsis",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {hit.french_common_name}
@@ -77,10 +77,10 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
                       variant="caption"
                       color="text.secondary"
                       sx={{
-                        "font-style": "italic",
+                        fontStyle: "italic",
                         overflow: "hidden",
-                        "white-space": "nowrap",
-                        "text-overflow": "ellipsis",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {hit.scientific_name}

@@ -8,11 +8,14 @@ const nextConfig = withPWA({
     register: true,
     skipWaiting: true,
     runtimeCaching,
-    disable: process.env.NODE_ENV === "development",
+    // disable: process.env.NODE_ENV === "development",
   },
   reactStrictMode: false,
   redirects: async () => {
     return [{ source: "/", destination: "/search", permanent: true }];
+  },
+  images: {
+    domains: ["https://inaturalist-open-data.s3.amazonaws.com"],
   },
 });
 

@@ -17,7 +17,7 @@ import {
   useSearchBox,
   UseSearchBoxProps,
 } from "react-instantsearch-hooks-web";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function CustomSearchBox(props: UseSearchBoxProps) {
   const { refine, clear } = useSearchBox(props);
@@ -25,16 +25,15 @@ export default function CustomSearchBox(props: UseSearchBoxProps) {
   return (
     <Paper
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center' }}
+      sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Common name or scientific name"
         inputProps={{ "aria-label": "search" }}
-          value={null}
-          onChange={event => refine(event.currentTarget.value)}
+        onChange={(event) => refine(event.currentTarget.value)}
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+      <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
         <SearchIcon />
       </IconButton>
     </Paper>

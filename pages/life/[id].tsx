@@ -1,7 +1,8 @@
 import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import type { GetServerSideProps, NextPage } from "next";
-import React, { useState } from "react";
+import Image from "next/image";
+import React, { Fragment, useState } from "react";
 import BackButton from "../../components/BackButton";
 import FavoriteButton from "../../components/FavoriteButton";
 import { serverUrl } from "../../config";
@@ -10,21 +11,21 @@ import { ILife } from "../../models/Life";
 
 const Life: NextPage = ({ lifeData }: any) => {
   return (
-    <div>
+    <Fragment>
       <BackButton />
       <FavoriteButton lifeId={lifeData.id} />
-      <Box>
+      {/* <Box>
         <Typography component="h1">{lifeData.french_common_name}</Typography>
         <Typography
           component="caption"
           color="text.secondary"
           sx={{
-            "font-style": "italic",
+            fontStyle: "italic",
           }}
         >
           {lifeData.scientific_name}
         </Typography>
-      </Box>
+      </Box> */}
       <Link
         href={lifeData.wikipedia_url}
         target="_blank"
@@ -36,22 +37,22 @@ const Life: NextPage = ({ lifeData }: any) => {
       <ImageList cols={3} rowHeight={164}>
         {lifeData.photos.map((photo: any) => (
           <ImageListItem key={photo.id}>
-            <img
-              src={`${photo.medium_url}?w=164&h=164&fit=crop&auto=format`}
-              loading="lazy"
+            <Image
+              loader={() => photo.medium_url}
+              src="/loading-fish.webp"
+              layout="fill"
             />
           </ImageListItem>
         ))}
       </ImageList>
-    </div>
+    </Fragment>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.id!;
-  console.log(id);
+  const id = context.query.id;
 
-  const lifeData = await getLife(id.toString())
+  const lifeData = await getLife(id.toString());
 
   return {
     props: {
