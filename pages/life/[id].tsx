@@ -19,11 +19,9 @@ const Life: NextPage = ({ lifeData }: any) => {
       <FavoriteButton lifeId={lifeData.id} />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
-        component="caption"
+        variant="caption"
         color="text.secondary"
-        sx={{
-          fontStyle: "italic",
-        }}
+        sx={{ fontStyle: "italic" }}
       >
         {lifeData.scientific_name}
       </Typography>
@@ -40,7 +38,7 @@ const Life: NextPage = ({ lifeData }: any) => {
           <ImageListItem key={photo.id}>
             <Image
               loader={() => photo.medium_url}
-              src="/loading-fish.webp"
+              src="/loading-fish.webp" // not working ?
               layout="fill"
             />
           </ImageListItem>
@@ -53,17 +51,19 @@ const Life: NextPage = ({ lifeData }: any) => {
 export default Life;
 
 export async function getStaticProps({ params }: any) {
+  let lifeData = null;
   try {
-    const lifeData = await getLife(params.id.toString());
-    return { props: { lifeData } };
+    lifeData = await getLife(params.id.toString());
   } catch (error) {
     console.error(error);
+  }
+  if (lifeData) {
+    return { props: { lifeData } };
+  } else {
     return { notFound: true };
   }
 }
 
 export async function getStaticPaths() {
-  // fallback: true means that the missing pages
-  // will not 404, and instead can render a fallback.
-  return { paths: [] as string[], fallback: true };
+  return { paths: [] as any[], fallback: true };
 }

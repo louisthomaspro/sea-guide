@@ -20,7 +20,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
   const prevY = useRef(0);
   const { hits, isLastPage, showMore, showPrevious } = useInfiniteHits(props);
 
-  useEffect(() => {
+  const initObserverForInfinitScroll = () => {
     observer.current = new IntersectionObserver(
       (entries) => {
         const firstEntry = entries[0];
@@ -46,6 +46,10 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
         currentObserver!.unobserve(currentElement);
       }
     };
+  };
+
+  useEffect(() => {
+    initObserverForInfinitScroll();
   }, [element]);
 
   return (
@@ -91,6 +95,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
             </Link>
           </Grid>
         ))}
+        {/* Skeleton loading */}
         {!isLastPage && (
           <Fragment>
             <Grid item ref={setElement} xs={6}>

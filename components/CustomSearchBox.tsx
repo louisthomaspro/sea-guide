@@ -1,22 +1,5 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  InputBase,
-  Paper,
-  Typography,
-} from "@mui/material";
-import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import {
-  useInfiniteHits,
-  UseInfiniteHitsProps,
-  useSearchBox,
-  UseSearchBoxProps,
-} from "react-instantsearch-hooks-web";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import { useSearchBox, UseSearchBoxProps } from "react-instantsearch-hooks-web";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function CustomSearchBox(props: UseSearchBoxProps) {

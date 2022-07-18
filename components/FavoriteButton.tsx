@@ -6,60 +6,64 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, IconButton, Snackbar } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { Fragment, SyntheticEvent, useContext, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  SyntheticEvent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import AuthContext from "../context/auth.context";
 import { signInWithGoogle } from "../firebase/auth";
 import { addFavorite, removeFavorite } from "../firebase/user.firestore";
 import { IFavorite, IUser } from "../models/User";
 
 export default function FavoriteButton(props: any) {
-  const [open, setOpen] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const { user, userData, loading } = useContext(AuthContext);
+  const [openAddFavorite, setOpenAddFavorite] = useState(false);
+  const [openRemoveFavorite, setOpenRemoveFavorite] = useState(false);
+  const [openNeedLogin, setOpenNeedLogin] = useState(false);
 
-  const addToFavorite = () => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { user, userData, loading, setUserData } = useContext(AuthContext);
+
+  const handleFavoriteButton = () => {
     if (!user) {
-      handleClick();
+      setOpenNeedLogin(true);
     } else {
       if (isFavorite) {
         removeFavorite(props.lifeId, user.email).then(() => {
-          handleClick();
-          setIsFavorite(false)
+          const newFavorites = userData.favorites.filter(
+            (id) => id !== props.lifeId
+          );
+          const newUserData = { ...userData, favorites: newFavorites };
+          console.log("newR", newUserData);
+          setUserData(newUserData);
+          setIsFavorite(false);
+          setOpenRemoveFavorite(true);
         });
       } else {
         addFavorite(props.lifeId, user.email).then(() => {
-          handleClick();
-          setIsFavorite(true)
+          userData.favorites.push(props.lifeId);
+          const newUserData = userData;
+          console.log("newA", newUserData);
+          setUserData(newUserData);
+          setIsFavorite(true);
+          setOpenAddFavorite(true);
         });
       }
     }
   };
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-  const handleClose = (
-    event?: SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const signIn = () => {
+  const login = () => {
     signInWithGoogle().then(() => {
-      handleClose();
+      setOpenNeedLogin(false);
     });
   };
 
   useEffect(() => {
     if (userData) {
-      if (
-        userData.favorites.some((el) => (el === props.lifeId))
-      ) {
+      console.log(userData);
+      if (userData.favorites.some((el) => el === props.lifeId)) {
         setIsFavorite(true);
       }
     }
@@ -67,14 +71,14 @@ export default function FavoriteButton(props: any) {
 
   const action = (
     <Fragment>
-      <Button color="secondary" size="small" onClick={signIn}>
+      <Button color="secondary" size="small" onClick={login}>
         SIGN IN
       </Button>
       <IconButton
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={handleClose}
+        onClick={() => setOpenNeedLogin(false)}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -83,14 +87,23 @@ export default function FavoriteButton(props: any) {
 
   return (
     <Fragment>
-      <IconButton aria-label="favorite" onClick={addToFavorite}>
+      <IconButton aria-label="favorite" onClick={handleFavoriteButton}>
         {isFavorite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
       <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message="Sign in needed for favorite featuer"
+        open={openAddFavorite}
+        autoHideDuration={3000}
+        message="Added to favorite!"
+      />
+      <Snackbar
+        open={openRemoveFavorite}
+        autoHideDuration={3000}
+        message="Removed from favorite!"
+      />
+      <Snackbar
+        open={openNeedLogin}
+        autoHideDuration={3000}
+        message="Need to login"
         action={action}
       />
     </Fragment>

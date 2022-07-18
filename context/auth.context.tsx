@@ -7,6 +7,7 @@ import { IUser } from "../models/User";
 const AuthContext = createContext({
   user: null,
   userData: null as IUser,
+  setUserData: null,
   loading: true,
 });
 
@@ -19,6 +20,7 @@ export function AuthContextProvider({ children }: any) {
     let unsubscribe;
 
     unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // Login
       if (user) {
         const userData = (await getUser(user.email)) as IUser;
         if (!userData) {
@@ -29,15 +31,19 @@ export function AuthContextProvider({ children }: any) {
           await setUserData(userData);
         }
         setUser(user);
-        setLoading(false);
+      } else {
+        // Logout
+        setUserData(null);
+        setUser(null);
       }
+      setLoading(false);
     });
 
     return unsubscribe;
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, userData, loading }}>
+    <AuthContext.Provider value={{ user, userData, loading, setUserData }}>
       {children}
     </AuthContext.Provider>
   );
