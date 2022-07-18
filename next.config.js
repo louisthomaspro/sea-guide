@@ -8,9 +8,10 @@ const nextConfig = withPWA({
     register: true,
     skipWaiting: true,
     runtimeCaching,
+    buildExcludes: [/middleware-manifest.json$/],
     // disable: process.env.NODE_ENV === "development",
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   redirects: async () => {
     return [{ source: "/", destination: "/search", permanent: true }];
   },
