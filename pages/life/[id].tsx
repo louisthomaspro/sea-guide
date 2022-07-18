@@ -14,46 +14,39 @@ const Life: NextPage = ({ lifeData }: any) => {
   }
 
   return (
-    <Fragment><BackButton />Hello {JSON.stringify(lifeData)}</Fragment>
-    // <Fragment>
-    //   {lifeData ? (
-    //     <Fragment>
-    //       <BackButton />
-    //       <FavoriteButton lifeId={lifeData.id} />
-    //       <Typography component="h1">{lifeData.french_common_name}</Typography>
-    //       <Typography
-    //         component="caption"
-    //         color="text.secondary"
-    //         sx={{
-    //           fontStyle: "italic",
-    //         }}
-    //       >
-    //         {lifeData.scientific_name}
-    //       </Typography>
-    //       <Link
-    //         href={lifeData.wikipedia_url}
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         Wikipedia
-    //       </Link>
+    <Fragment>
+      <BackButton />
+      <FavoriteButton lifeId={lifeData.id} />
+      <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <Typography
+        component="caption"
+        color="text.secondary"
+        sx={{
+          fontStyle: "italic",
+        }}
+      >
+        {lifeData.scientific_name}
+      </Typography>
+      <Link
+        href={lifeData.wikipedia_url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Wikipedia
+      </Link>
 
-    //       <ImageList cols={3} rowHeight={164}>
-    //         {lifeData.photos.map((photo: any) => (
-    //           <ImageListItem key={photo.id}>
-    //             <Image
-    //               loader={() => photo.medium_url}
-    //               src="/loading-fish.webp"
-    //               layout="fill"
-    //             />
-    //           </ImageListItem>
-    //         ))}
-    //       </ImageList>
-    //     </Fragment>
-    //   ) : (
-    //     <Fragment>Nothing to show</Fragment>
-    //   )}
-    // </Fragment>
+      <ImageList cols={3} rowHeight={164}>
+        {lifeData.photos.map((photo: any) => (
+          <ImageListItem key={photo.id}>
+            <Image
+              loader={() => photo.medium_url}
+              src="/loading-fish.webp"
+              layout="fill"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </Fragment>
   );
 };
 
@@ -61,8 +54,7 @@ export default Life;
 
 export async function getStaticProps({ params }: any) {
   try {
-    // const lifeData = await getLife(id.toString());
-    const lifeData: any = params.id;
+    const lifeData = await getLife(params.id.toString());
     return { props: { lifeData } };
   } catch (error) {
     console.error(error);
