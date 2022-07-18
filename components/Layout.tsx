@@ -1,7 +1,7 @@
 
 import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";
-import theme from "../pages/utils/theme";
+import theme from "../utils/theme";
 import NavBar from "./NavBar";
 
 interface LayoutProps {
