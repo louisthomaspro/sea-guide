@@ -19,8 +19,7 @@ const Explore: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params!;
-  const lifeData = await getLife(id.toString());
+  const lifeData = await getLife("39659");
 
   if (lifeData) {
     return { props: { lifeData } };
