@@ -1,5 +1,5 @@
 import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -49,26 +49,37 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params!;
-  console.log(context);
-  const lifeData = await getLife(id.toString());
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const { id } = context.params!;
+//   console.log(context);
+//   const lifeData = await getLife(id.toString());
 
-  console.log(id);
-  console.log(lifeData);
+//   console.log(id);
+//   console.log(lifeData);
+
+//   if (lifeData) {
+//     return { props: { lifeData } };
+//   } else {
+//     return { notFound: true };
+//   }
+// };
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [] as any[],
+//     fallback: true,
+//   };
+// };
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params!;
+  const lifeData = await getLife(id.toString());
 
   if (lifeData) {
     return { props: { lifeData } };
   } else {
     return { notFound: true };
   }
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [] as any[],
-    fallback: 'blocking',
-  };
 };
 
 export default Life;
