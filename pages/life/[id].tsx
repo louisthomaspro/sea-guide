@@ -46,18 +46,10 @@ const Life: NextPage = ({ lifeData }: any) => {
 
 export default Life;
 
-export async function getStaticProps() {
-  let lifeData = null;
-  try {
-    lifeData = await getLife("39659");
-  } catch (error) {
-    console.error(error);
-  }
-  if (lifeData) {
-    return { props: { lifeData } };
-  } else {
-    return { notFound: true };
-  }
+export async function getServerSideProps(context: any) {
+  let lifeData = await getLife("39659");
+  
+  return { props: { lifeData } };
 }
 
 // export async function getStaticPaths() {
