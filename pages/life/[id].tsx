@@ -8,10 +8,6 @@ import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
 
 const Life: NextPage = ({ lifeData }: any) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <Fragment>
