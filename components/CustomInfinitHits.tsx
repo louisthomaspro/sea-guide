@@ -57,7 +57,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
       <Grid container rowSpacing={1} columnSpacing={{ xs: 2 }}>
         {hits.map((hit: any) => (
           <Grid item xs={6} key={hit.id}>
-            <a href={`/life/${hit.id}`}>
+            <Link href={`/life/${hit.id}`}>
               <Card>
                 <CardActionArea>
                   <CardMedia
@@ -92,7 +92,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
                   </CardContent>
                 </CardActionArea>
               </Card>
-            </a>
+            </Link>
           </Grid>
         ))}
         {/* Skeleton loading */}
