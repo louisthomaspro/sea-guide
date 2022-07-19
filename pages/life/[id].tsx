@@ -1,13 +1,19 @@
 import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
-import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
+import { ILife } from "../../models/Life";
 
-const Life: NextPage = ({ lifeData }: any) => {
+const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Fragment>
@@ -44,14 +50,25 @@ const Life: NextPage = ({ lifeData }: any) => {
   );
 };
 
+export const getStaticProps: GetStaticProps<
+  { lifeData: ILife },
+  Params
+> = async (context) => {
+  const { id } = context.params!;
+  const lifeData = await getLife(id.toString());
+
+  if (lifeData) {
+    return { props: { lifeData } };
+  } else {
+    return { notFound: true };
+  }
+};
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  return {
+    paths: [] as any[],
+    fallback: false,
+  };
+};
+
 export default Life;
-
-export async function getServerSideProps(context: any) {
-  let lifeData = await getLife("39659");
-  
-  return { props: { lifeData } };
-}
-
-// export async function getStaticPaths() {
-//   return { paths: [] as any[], fallback: true };
-// }
