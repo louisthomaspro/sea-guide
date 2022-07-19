@@ -1,6 +1,5 @@
 import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -50,12 +49,13 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<
-  { lifeData: ILife },
-  Params
-> = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
+  console.log(context);
   const lifeData = await getLife(id.toString());
+
+  console.log(id);
+  console.log(lifeData);
 
   if (lifeData) {
     return { props: { lifeData } };
@@ -64,10 +64,10 @@ export const getStaticProps: GetStaticProps<
   }
 };
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [] as any[],
-    fallback: false,
+    fallback: true,
   };
 };
 
