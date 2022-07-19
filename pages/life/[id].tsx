@@ -1,5 +1,10 @@
 import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
-import type { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -51,11 +56,15 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
-  console.log(context);
   const lifeData = await getLife(id.toString());
 
-  console.log(id);
-  console.log(lifeData);
+  // const lifeData = {
+  //   id: 123,
+  //   french_common_name: "test",
+  //   scientific_name: "test",
+  //   wikipedia_url: "test",
+  //   photos: [] as any[],
+  // };
 
   if (lifeData) {
     return { props: { lifeData } };
