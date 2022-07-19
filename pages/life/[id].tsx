@@ -60,10 +60,10 @@ export async function getStaticProps({ params }: any) {
   if (lifeData) {
     return { props: { lifeData } };
   } else {
-    return { notFound: true };
+    // return { notFound: true };
   }
 }
 
-export async function getStaticPaths() {
-  return { paths: [] as any[], fallback: true };
-}
+// export async function getStaticPaths() {
+//   return { paths: [] as any[], fallback: true };
+// }
