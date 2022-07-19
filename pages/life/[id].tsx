@@ -49,31 +49,13 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   );
 };
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const { id } = context.params!;
-//   console.log(context);
-//   const lifeData = await getLife(id.toString());
-
-//   console.log(id);
-//   console.log(lifeData);
-
-//   if (lifeData) {
-//     return { props: { lifeData } };
-//   } else {
-//     return { notFound: true };
-//   }
-// };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [] as any[],
-//     fallback: true,
-//   };
-// };
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
+  console.log(context);
   const lifeData = await getLife(id.toString());
+
+  console.log(id);
+  console.log(lifeData);
 
   if (lifeData) {
     return { props: { lifeData } };
@@ -81,5 +63,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { notFound: true };
   }
 };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [] as any[],
+    fallback: true,
+  };
+};
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const { id } = context.params!;
+//   const lifeData = await getLife(id.toString());
+
+//   if (lifeData) {
+//     return { props: { lifeData } };
+//   } else {
+//     return { notFound: true };
+//   }
+// };
 
 export default Life;
