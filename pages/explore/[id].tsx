@@ -8,7 +8,7 @@ import { Favorite } from "../../components/Favorite";
 const Explore: NextPage<{ lifeData: number }> = ({ lifeData }) => {
   const router = useRouter();
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <Fragment>Loading...</Fragment>;
   }
 
   return (
