@@ -1,10 +1,16 @@
 import { Typography } from "@mui/material";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import { Favorite } from "../../components/Favorite";
 
 const Explore: NextPage<{ lifeData: number }> = ({ lifeData }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Fragment>
       <BackButton />

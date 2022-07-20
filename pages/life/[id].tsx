@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import { Favorite } from "../../components/Favorite";
