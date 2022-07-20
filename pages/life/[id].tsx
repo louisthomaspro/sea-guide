@@ -66,8 +66,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  // get all life ids...
   return {
-    paths: [] as any[],
+    paths: ["59704"],
     fallback: true,
   };
 };
