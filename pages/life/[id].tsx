@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
+import { BackHeader } from "../../components/BackHeader";
 import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
@@ -21,7 +22,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      <BackButton></BackButton>
+      <BackHeader />
       <FavoriteButton lifeId={lifeData.id} />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
@@ -71,6 +72,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: true,
   };
 };
-
 
 export default Life;
