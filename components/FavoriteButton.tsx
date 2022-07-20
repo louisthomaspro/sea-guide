@@ -1,23 +1,25 @@
-import {
-  Favorite,
-  FavoriteBorder,
-  FavoriteBorderOutlined,
-} from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, IconButton, Snackbar } from "@mui/material";
-import { useRouter } from "next/router";
-import React, {
-  Fragment,
-  FunctionComponent,
-  SyntheticEvent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import AuthContext from "../context/auth.context";
-import { signInWithGoogle } from "../firebase/auth";
-import { addFavorite, removeFavorite } from "../firebase/user.firestore";
-import { IFavorite, IUser } from "../models/User";
+// import {
+//   Favorite,
+//   FavoriteBorder,
+//   FavoriteBorderOutlined,
+// } from "@mui/icons-material";
+// import CloseIcon from "@mui/icons-material/Close";
+// import { Box, Button, IconButton, Snackbar } from "@mui/material";
+// import { useRouter } from "next/router";
+// import React, {
+//   Fragment,
+//   FunctionComponent,
+//   SyntheticEvent,
+//   useContext,
+//   useEffect,
+//   useState,
+// } from "react";
+// import AuthContext from "../context/auth.context";
+// import { signInWithGoogle } from "../firebase/auth";
+// import { addFavorite, removeFavorite } from "../firebase/user.firestore";
+// import { IFavorite, IUser } from "../models/User";
+
+import { Fragment } from "react";
 
 interface Props {
   lifeId: number
