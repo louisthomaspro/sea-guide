@@ -22,7 +22,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   return (
     <Fragment>
       {/* <BackButton /> */}
-      {/* <FavoriteButton lifeId={lifeData.id} /> */}
+      <FavoriteButton lifeId={lifeData.id} />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
         variant="caption"
@@ -39,7 +39,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
         Wikipedia
       </Link>
 
-      {/* <ImageList cols={3} rowHeight={164}>
+      <ImageList cols={3} rowHeight={164}>
         {lifeData.photos.map((photo: any) => (
           <ImageListItem key={photo.id}>
             <Image
@@ -49,7 +49,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
             />
           </ImageListItem>
         ))}
-      </ImageList> */}
+      </ImageList>
     </Fragment>
   );
 };
