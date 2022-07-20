@@ -19,6 +19,8 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   //   return <div>Loading...</div>;
   // }
 
+  if (!lifeData) return <Fragment>COucou</Fragment>
+
   return (
     <Fragment>
       <BackButton />
