@@ -1,22 +1,29 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
+import type {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from "next";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
-import { Favorite } from "../../components/Favorite";
+import FavoriteButton from "../../components/FavoriteButton";
+import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 
 const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  // const router = useRouter();
+  // if (router.isFallback) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <Fragment>
       <BackButton />
-      {/* <FavoriteButton /> */}
-      <Favorite />
-      {/* <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <FavoriteButton />
+      <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
         variant="caption"
         color="text.secondary"
@@ -42,13 +49,20 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
             />
           </ImageListItem>
         ))}
-      </ImageList> */}
+      </ImageList>
     </Fragment>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  return { props: { lifeData: null } };
+  const { id } = context.params!;
+  const lifeData = await getLife(id.toString());
+
+  if (lifeData) {
+    return { props: { lifeData } };
+  } else {
+    return { notFound: true };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
