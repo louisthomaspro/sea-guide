@@ -1,17 +1,7 @@
-import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
-import type {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from "next";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import { Favorite } from "../../components/Favorite";
-import FavoriteButton from "../../components/FavoriteButton";
-import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 
 const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
