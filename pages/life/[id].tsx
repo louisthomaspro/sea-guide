@@ -22,7 +22,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      <BackHeader />
+      {/* <BackHeader /> */}
       <FavoriteButton lifeId={lifeData.id} />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
