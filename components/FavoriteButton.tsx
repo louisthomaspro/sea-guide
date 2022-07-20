@@ -23,7 +23,7 @@ interface Props {
   lifeId: number
 }
 
-export const FavoriteButton: FunctionComponent<Props> = ({ lifeId }) => {
+export const FavoriteButton = () => {
   // const [openAddFavorite, setOpenAddFavorite] = useState(false);
   // const [openRemoveFavorite, setOpenRemoveFavorite] = useState(false);
   // const [openNeedLogin, setOpenNeedLogin] = useState(false);
