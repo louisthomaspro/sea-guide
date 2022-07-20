@@ -57,14 +57,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params!;
-  const lifeData = await getLife(id.toString());
-
-  if (lifeData) {
-    return { props: { lifeData } };
-  } else {
-    return { notFound: true };
-  }
+  return { props: { lifeData: null } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
