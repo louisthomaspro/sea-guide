@@ -8,9 +8,12 @@ export default function BackButton() {
 
   return (
     <Fragment>
-      <IconButton aria-label="back" onClick={() => console.log("ici")}>
-        <ChevronLeft />
-      </IconButton>
+      coucou
+      <div onClick={() => console.log("ici")}>
+        <IconButton aria-label="back">
+          <ChevronLeft />
+        </IconButton>
+      </div>
     </Fragment>
   );
 }
