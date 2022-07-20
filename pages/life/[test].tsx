@@ -55,8 +55,8 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id } = context.params!;
-  const lifeData = await getLife(id.toString());
+  const { test } = context.params!;
+  const lifeData = await getLife(test.toString());
 
   // const lifeData = {
   //   id: 123,
