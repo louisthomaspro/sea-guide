@@ -14,10 +14,10 @@ import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 
 const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  // const router = useRouter();
+  // if (router.isFallback) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <Fragment>
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [] as any[],
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
