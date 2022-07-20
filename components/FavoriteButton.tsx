@@ -26,33 +26,33 @@ export default function FavoriteButton(props: any) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { user, userData, loading, setUserData } = useContext(AuthContext);
 
-  const handleFavoriteButton = () => {
-    if (!user) {
-      setOpenNeedLogin(true);
-    } else {
-      if (isFavorite) {
-        removeFavorite(props.lifeId, user.email).then(() => {
-          const newFavorites = userData.favorites.filter(
-            (id) => id !== props.lifeId
-          );
-          const newUserData = { ...userData, favorites: newFavorites };
-          console.log("newR", newUserData);
-          setUserData(newUserData);
-          setIsFavorite(false);
-          setOpenRemoveFavorite(true);
-        });
-      } else {
-        addFavorite(props.lifeId, user.email).then(() => {
-          userData.favorites.push(props.lifeId);
-          const newUserData = userData;
-          console.log("newA", newUserData);
-          setUserData(newUserData);
-          setIsFavorite(true);
-          setOpenAddFavorite(true);
-        });
-      }
-    }
-  };
+  // const handleFavoriteButton = () => {
+  //   if (!user) {
+  //     setOpenNeedLogin(true);
+  //   } else {
+  //     if (isFavorite) {
+  //       removeFavorite(props.lifeId, user.email).then(() => {
+  //         const newFavorites = userData.favorites.filter(
+  //           (id) => id !== props.lifeId
+  //         );
+  //         const newUserData = { ...userData, favorites: newFavorites };
+  //         console.log("newR", newUserData);
+  //         setUserData(newUserData);
+  //         setIsFavorite(false);
+  //         setOpenRemoveFavorite(true);
+  //       });
+  //     } else {
+  //       addFavorite(props.lifeId, user.email).then(() => {
+  //         userData.favorites.push(props.lifeId);
+  //         const newUserData = userData;
+  //         console.log("newA", newUserData);
+  //         setUserData(newUserData);
+  //         setIsFavorite(true);
+  //         setOpenAddFavorite(true);
+  //       });
+  //     }
+  //   }
+  // };
 
   const login = () => {
     signInWithGoogle().then(() => {
@@ -60,14 +60,14 @@ export default function FavoriteButton(props: any) {
     });
   };
 
-  useEffect(() => {
-    if (userData) {
-      console.log(userData);
-      if (userData.favorites.some((el) => el === props.lifeId)) {
-        setIsFavorite(true);
-      }
-    }
-  }, [userData, user, loading]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     console.log(userData);
+  //     if (userData.favorites.some((el) => el === props.lifeId)) {
+  //       setIsFavorite(true);
+  //     }
+  //   }
+  // }, [userData, user, loading]);
 
   const action = (
     <Fragment>
@@ -87,7 +87,7 @@ export default function FavoriteButton(props: any) {
 
   return (
     <Fragment>
-      <IconButton aria-label="favorite" onClick={handleFavoriteButton}>
+      <IconButton aria-label="favorite" onClick={() => console.log('add to factorit')}>
         {isFavorite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
       <Snackbar
