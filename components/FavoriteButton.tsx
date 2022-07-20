@@ -24,7 +24,7 @@ export default function FavoriteButton(props: any) {
   const [openNeedLogin, setOpenNeedLogin] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(false);
-  const { user, userData, loading, setUserData } = useContext(AuthContext);
+  // const { user, userData, loading, setUserData } = useContext(AuthContext);
 
   // const handleFavoriteButton = () => {
   //   if (!user) {
@@ -69,28 +69,28 @@ export default function FavoriteButton(props: any) {
   //   }
   // }, [userData, user, loading]);
 
-  const action = (
-    <Fragment>
-      <Button color="secondary" size="small" onClick={login}>
-        SIGN IN
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={() => setOpenNeedLogin(false)}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </Fragment>
-  );
+  // const action = (
+  //   <Fragment>
+  //     <Button color="secondary" size="small" onClick={login}>
+  //       SIGN IN
+  //     </Button>
+  //     <IconButton
+  //       size="small"
+  //       aria-label="close"
+  //       color="inherit"
+  //       onClick={() => setOpenNeedLogin(false)}
+  //     >
+  //       <CloseIcon fontSize="small" />
+  //     </IconButton>
+  //   </Fragment>
+  // );
 
   return (
     <Fragment>
       <IconButton aria-label="favorite" onClick={() => console.log('add to factorit')}>
         {isFavorite ? <Favorite /> : <FavoriteBorder />}
       </IconButton>
-      <Snackbar
+      {/* <Snackbar
         open={openAddFavorite}
         autoHideDuration={3000}
         message="Added to favorite!"
@@ -105,7 +105,7 @@ export default function FavoriteButton(props: any) {
         autoHideDuration={3000}
         message="Need to login"
         action={action}
-      />
+      /> */}
     </Fragment>
   );
 }
