@@ -22,9 +22,8 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      {/* <BackButton />
-      <FavoriteButton /> */}
-      <Favorite />
+      <BackButton />
+      <FavoriteButton />
       {/* <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
         variant="caption"
