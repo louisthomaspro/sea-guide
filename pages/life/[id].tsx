@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
-import FavoriteButton from "../../components/FavoriteButton";
+import { FavoriteButton } from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 

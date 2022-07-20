@@ -8,6 +8,7 @@ import { Box, Button, IconButton, Snackbar } from "@mui/material";
 import { useRouter } from "next/router";
 import React, {
   Fragment,
+  FunctionComponent,
   SyntheticEvent,
   useContext,
   useEffect,
@@ -18,12 +19,16 @@ import { signInWithGoogle } from "../firebase/auth";
 import { addFavorite, removeFavorite } from "../firebase/user.firestore";
 import { IFavorite, IUser } from "../models/User";
 
-export default function FavoriteButton(props: any) {
-  const [openAddFavorite, setOpenAddFavorite] = useState(false);
-  const [openRemoveFavorite, setOpenRemoveFavorite] = useState(false);
-  const [openNeedLogin, setOpenNeedLogin] = useState(false);
+interface Props {
+  lifeId: number
+}
 
-  const [isFavorite, setIsFavorite] = useState(false);
+export const FavoriteButton: FunctionComponent<Props> = ({ lifeId }) => {
+  // const [openAddFavorite, setOpenAddFavorite] = useState(false);
+  // const [openRemoveFavorite, setOpenRemoveFavorite] = useState(false);
+  // const [openNeedLogin, setOpenNeedLogin] = useState(false);
+
+  // const [isFavorite, setIsFavorite] = useState(false);
   // const { user, userData, loading, setUserData } = useContext(AuthContext);
 
   // const handleFavoriteButton = () => {
@@ -54,11 +59,11 @@ export default function FavoriteButton(props: any) {
   //   }
   // };
 
-  const login = () => {
-    signInWithGoogle().then(() => {
-      setOpenNeedLogin(false);
-    });
-  };
+  // const login = () => {
+  //   signInWithGoogle().then(() => {
+  //     setOpenNeedLogin(false);
+  //   });
+  // };
 
   // useEffect(() => {
   //   if (userData) {
@@ -87,9 +92,10 @@ export default function FavoriteButton(props: any) {
 
   return (
     <Fragment>
-      <IconButton aria-label="favorite" onClick={() => console.log('add to factorit')}>
+      helloooo
+      {/* <IconButton aria-label="favorite" onClick={() => console.log('add to factorit')}>
         {isFavorite ? <Favorite /> : <FavoriteBorder />}
-      </IconButton>
+      </IconButton> */}
       {/* <Snackbar
         open={openAddFavorite}
         autoHideDuration={3000}
