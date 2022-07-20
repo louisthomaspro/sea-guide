@@ -14,50 +14,42 @@ import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 
 const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
-  // const router = useRouter();
-  // if (router.isFallback) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (!lifeData) return <Fragment>COucou</Fragment>
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Fragment>
-      {lifeData ? (
-        <Fragment>
-          <BackButton />
-          <FavoriteButton />
-          <Typography component="h1">{lifeData.french_common_name}</Typography>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{ fontStyle: "italic" }}
-          >
-            {lifeData.scientific_name}
-          </Typography>
-          <Link
-            href={lifeData.wikipedia_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Wikipedia
-          </Link>
+      <BackButton />
+      <FavoriteButton />
+      <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ fontStyle: "italic" }}
+      >
+        {lifeData.scientific_name}
+      </Typography>
+      <Link
+        href={lifeData.wikipedia_url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Wikipedia
+      </Link>
 
-          <ImageList cols={3} rowHeight={164}>
-            {lifeData.photos.map((photo: any) => (
-              <ImageListItem key={photo.id}>
-                <Image
-                  loader={() => photo.medium_url}
-                  src="/loading-fish.webp" // not working ?
-                  layout="fill"
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Fragment>
-      ) : (
-        <Fragment>Hello</Fragment>
-      )}
+      <ImageList cols={3} rowHeight={164}>
+        {lifeData.photos.map((photo: any) => (
+          <ImageListItem key={photo.id}>
+            <Image
+              loader={() => photo.medium_url}
+              src="/loading-fish.webp" // not working ?
+              layout="fill"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
     </Fragment>
   );
 };
