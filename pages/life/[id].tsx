@@ -23,35 +23,41 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      <BackButton />
-      <FavoriteButton />
-      <Typography component="h1">{lifeData.french_common_name}</Typography>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ fontStyle: "italic" }}
-      >
-        {lifeData.scientific_name}
-      </Typography>
-      <Link
-        href={lifeData.wikipedia_url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Wikipedia
-      </Link>
+      {lifeData ? (
+        <Fragment>
+          <BackButton />
+          <FavoriteButton />
+          <Typography component="h1">{lifeData.french_common_name}</Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ fontStyle: "italic" }}
+          >
+            {lifeData.scientific_name}
+          </Typography>
+          <Link
+            href={lifeData.wikipedia_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wikipedia
+          </Link>
 
-      <ImageList cols={3} rowHeight={164}>
-        {lifeData.photos.map((photo: any) => (
-          <ImageListItem key={photo.id}>
-            <Image
-              loader={() => photo.medium_url}
-              src="/loading-fish.webp" // not working ?
-              layout="fill"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+          <ImageList cols={3} rowHeight={164}>
+            {lifeData.photos.map((photo: any) => (
+              <ImageListItem key={photo.id}>
+                <Image
+                  loader={() => photo.medium_url}
+                  src="/loading-fish.webp" // not working ?
+                  layout="fill"
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Fragment>
+      ) : (
+        <Fragment>Hello</Fragment>
+      )}
     </Fragment>
   );
 };
