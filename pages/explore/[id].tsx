@@ -21,4 +21,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return { props: { lifeData: null } };
 };
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [] as any[],
+    fallback: true,
+  };
+};
+
 export default Explore;
