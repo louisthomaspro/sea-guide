@@ -6,10 +6,10 @@ import BackButton from "../../components/BackButton";
 import { Favorite } from "../../components/Favorite";
 
 const Explore: NextPage<{ lifeData: number }> = ({ lifeData }) => {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <Fragment>Loading...</Fragment>;
-  }
+  // const router = useRouter();
+  // if (router.isFallback) {
+  //   return <Fragment>Loading...</Fragment>;
+  // }
 
   return (
     <Fragment>
