@@ -8,7 +8,7 @@ import type {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
-import BackButton from "../../components/BackButton";
+import BackButtons from "../../components/BackButton";
 import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
@@ -21,7 +21,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      <BackButton />
+      <BackButtons />
       <FavoriteButton lifeId={lifeData.id} />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
