@@ -21,14 +21,42 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      Hello
+      <BackButton />
+      {/* <FavoriteButton lifeId={lifeData.id} /> */}
+      <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ fontStyle: "italic" }}
+      >
+        {lifeData.scientific_name}
+      </Typography>
+      <Link
+        href={lifeData.wikipedia_url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Wikipedia
+      </Link>
+
+      {/* <ImageList cols={3} rowHeight={164}>
+        {lifeData.photos.map((photo: any) => (
+          <ImageListItem key={photo.id}>
+            <Image
+              loader={() => photo.medium_url}
+              src="/loading-fish.webp" // not working ?
+              layout="fill"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList> */}
     </Fragment>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
-  const lifeData = await getLife("39659");
+  const lifeData = await getLife(id.toString());
 
   // const lifeData = {
   //   id: 123,
