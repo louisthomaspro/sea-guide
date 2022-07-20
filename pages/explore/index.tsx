@@ -1,10 +1,12 @@
 import { Typography } from "@mui/material";
-import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Fragment } from "react";
+import { Favorite } from "../../components/Favorite";
 
-const Explore: NextPage = () => {
+const Explore: NextPage<{ lifeData: number }> = ({ lifeData }) => {
   return (
     <Fragment>
+      <Favorite />
       <Typography variant="h1" component="h1">
         Explore
       </Typography>
@@ -13,6 +15,17 @@ const Explore: NextPage = () => {
       </Typography>
     </Fragment>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  return { props: { lifeData: null } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [] as any[],
+    fallback: true,
+  };
 };
 
 export default Explore;

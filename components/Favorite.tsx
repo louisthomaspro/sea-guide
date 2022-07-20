@@ -1,5 +1,5 @@
 import { Fragment } from "react";
 
-export const AddFavoriteButton = () => {
+export const Favorite = () => {
   return <Fragment>Hello</Fragment>;
 };

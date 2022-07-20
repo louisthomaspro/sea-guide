@@ -9,8 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
-import { AddFavoriteButton } from "../../components/Favorite";
-import { FavoriteButton } from "../../components/FavoriteButton";
+import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
 import { ILife } from "../../models/Life";
 
@@ -22,9 +21,8 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
 
   return (
     <Fragment>
-      {/* <BackButton /> */}
-      {/* <FavoriteButton /> */}
-      {/* <AddFavoriteButton /> */}
+      <BackButton />
+      <FavoriteButton />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
       <Typography
         variant="caption"
