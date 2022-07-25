@@ -1,8 +1,5 @@
-import {
-  Favorite,
-  FavoriteBorder,
-  FavoriteBorderOutlined,
-} from "@mui/icons-material";
+import Favorite from "@mui/icons-material/Favorite";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, IconButton, Snackbar } from "@mui/material";
 import { useRouter } from "next/router";

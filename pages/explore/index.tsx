@@ -1,17 +1,17 @@
-import { Typography } from "@mui/material";
-import type { NextPage } from "next";
-import { Fragment } from "react";
+// import Typography from "@mui/material/Typography";
+// import type { NextPage } from "next";
 
-const Explore: NextPage = () => {
+const Explore = () => {
   return (
-    <Fragment>
-      <Typography variant="h1" component="h1">
+    <>
+      {/* <Typography variant="h1" component="h1">
         Explore
       </Typography>
       <Typography variant="body1" gutterBottom>
         In construction...
-      </Typography>
-    </Fragment>
+      </Typography> */}
+      test
+    </>
   );
 };
 

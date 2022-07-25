@@ -1,5 +1,9 @@
-
-import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
+// import { Box, Container, CssBaseline, ThemeProvider } from "@mui/material";
+// import { ThemeProvider } from "@emotion/react";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 import { ReactNode } from "react";
 import theme from "../utils/theme";
 import NavBar from "./NavBar";

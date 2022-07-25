@@ -1,6 +1,4 @@
-import { ChevronLeft } from "@mui/icons-material";
-import { Box, Button, IconButton } from "@mui/material";
-import { useRouter } from "next/router";
+import { Button } from "@mui/material";
 import { logOut, signInWithGoogle } from "../firebase/auth";
 
 export function GoogleSignIn() {

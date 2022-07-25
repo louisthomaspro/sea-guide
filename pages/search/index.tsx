@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import React, { Fragment, useContext, useRef, useState } from "react";
+import React, { Fragment } from "react";
 import { InstantSearch } from "react-instantsearch-hooks-web";
 import { algolia } from "../../algolia/clientApp";
 import CustomInfiniteHits from "../../components/CustomInfinitHits";

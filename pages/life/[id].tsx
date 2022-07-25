@@ -1,6 +1,8 @@
-import { ImageList, ImageListItem, Link, Typography } from "@mui/material";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 import type {
-  GetServerSideProps,
   GetStaticPaths,
   GetStaticProps,
   NextPage,
@@ -18,7 +20,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-
+  
   return (
     <Fragment>
       <BackButton />
@@ -68,7 +70,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   // get all life ids...
   return {
-    paths: [{ params: { id: "59704" } }],
+    paths: [],
     fallback: true,
   };
 };
