@@ -1,16 +1,14 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { NextPage } from "next";
-import React, { Fragment } from "react";
 import { InstantSearch } from "react-instantsearch-hooks-web";
 import { algolia } from "../../algolia/clientApp";
-import CustomInfiniteHits from "../../components/CustomInfinitHits";
+import CustomInfiniteHits from "../../components/CustomInfiniteHits";
 import CustomSearchBox from "../../components/CustomSearchBox";
-import AuthContext from "../../context/auth.context";
 
 const Search: NextPage = () => {
   return (
-    <Fragment>
+    <>
       <Typography variant="h1" component="h1">
         Search
       </Typography>
@@ -21,7 +19,7 @@ const Search: NextPage = () => {
         </Box>
         <CustomInfiniteHits />
       </InstantSearch>
-    </Fragment>
+    </>
   );
 };
 

@@ -2,14 +2,9 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import type {
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
 import BackButton from "../../components/BackButton";
 import FavoriteButton from "../../components/FavoriteButton";
 import { getLife } from "../../firebase/life.firestore";
@@ -20,9 +15,9 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-  
+
   return (
-    <Fragment>
+    <>
       <BackButton />
       <FavoriteButton />
       <Typography component="h1">{lifeData.french_common_name}</Typography>
@@ -52,7 +47,7 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
           </ImageListItem>
         ))}
       </ImageList>
-    </Fragment>
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   useInfiniteHits,
   UseInfiniteHitsProps,
@@ -20,7 +20,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
   const prevY = useRef(0);
   const { hits, isLastPage, showMore, showPrevious } = useInfiniteHits(props);
 
-  const initObserverForInfinitScroll = () => {
+  const initObserverForInfiniteScroll = () => {
     observer.current = new IntersectionObserver(
       (entries) => {
         const firstEntry = entries[0];
@@ -49,11 +49,11 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
   };
 
   useEffect(() => {
-    initObserverForInfinitScroll();
+    initObserverForInfiniteScroll();
   }, [element]);
 
   return (
-    <Fragment>
+    <>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 2 }}>
         {hits.map((hit: any) => (
           <Grid item xs={6} key={hit.id}>
@@ -97,7 +97,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
         ))}
         {/* Skeleton loading */}
         {!isLastPage && (
-          <Fragment>
+          <>
             <Grid item ref={setElement} xs={6}>
               <Card>
                 <CardActionArea>
@@ -128,7 +128,7 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
                 </CardActionArea>
               </Card>
             </Grid>
-          </Fragment>
+          </>
         )}
       </Grid>
       {isLastPage && (
@@ -143,6 +143,6 @@ export default function CustomInfiniteHits(props: UseInfiniteHitsProps) {
           No more sealife available...
         </Typography>
       )}
-    </Fragment>
+    </>
   );
 }

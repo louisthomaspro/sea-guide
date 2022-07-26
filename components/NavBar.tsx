@@ -1,12 +1,9 @@
-import * as React from "react";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import ExploreIcon from "@mui/icons-material/Explore";
-import Paper from "@mui/material/Paper";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 
 export default function NavBar() {
   const router = useRouter();

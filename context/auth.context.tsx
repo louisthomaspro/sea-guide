@@ -1,40 +1,45 @@
-import React, { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
+import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/auth";
 import { createUser, getUser } from "../firebase/user.firestore";
 import { IUser } from "../models/User";
 
-const AuthContext = createContext({
-  user: null,
-  userData: null as IUser,
-  setUserData: null,
-  loading: true,
-});
+interface IAuthContext {
+  userSession: User;
+  userData: IUser;
+  setUserData: (...args: any) => any;
+  loading: boolean;
+}
+
+const AuthContext = createContext({} as IAuthContext);
 
 export function AuthContextProvider({ children }: any) {
-  const [user, setUser] = useState<User | null>(null);
-  const [userData, setUserData] = useState<IUser | null>(null);
+  const [userSession, setUserSession] = useState<User>(null);
+  const [userData, setUserData] = useState<IUser>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     let unsubscribe;
 
-    unsubscribe = onAuthStateChanged(auth, async (user) => {
+    unsubscribe = onAuthStateChanged(auth, async (userSession) => {
       // Login
-      if (user) {
-        const userData = (await getUser(user.email)) as IUser;
+      if (userSession) {
+        const userData = (await getUser(userSession.email)) as IUser;
         if (!userData) {
-          const newUserData: IUser = { email: user.email, favorites: [] };
-          await createUser(newUserData, user.email);
+          const newUserData: IUser = {
+            email: userSession.email,
+            favorites: [],
+          };
+          await createUser(newUserData, userSession.email);
           await setUserData(newUserData);
         } else {
           await setUserData(userData);
         }
-        setUser(user);
+        setUserSession(userSession);
       } else {
         // Logout
         setUserData(null);
-        setUser(null);
+        setUserSession(null);
       }
       setLoading(false);
     });
@@ -43,7 +48,9 @@ export function AuthContextProvider({ children }: any) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, userData, loading, setUserData }}>
+    <AuthContext.Provider
+      value={{ userSession, userData, loading, setUserData }}
+    >
       {children}
     </AuthContext.Provider>
   );

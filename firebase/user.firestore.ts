@@ -5,7 +5,7 @@ import {
   getDoc,
   setDoc,
   updateDoc,
-} from "firebase/firestore";
+} from "firebase/firestore/lite";
 import { IUser } from "../models/User";
 import { firestore } from "./firestore";
 

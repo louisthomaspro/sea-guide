@@ -6,22 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.0",
+    "@next/bundle-analyzer": "^12.2.3",
     "@types/react-instantsearch-dom": "^6.12.3",
     "algoliasearch": "^4.13.1",
-    "firebase": "^9.9.0",
+    "cross-env": "^7.0.3",
+    "firebase": "^9.9.1",
     "next": "^12.2.2",
     "next-pwa": "^5.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.0.3",
-    "react-instantsearch-hooks-web": "^6.30.1",
+    "react-instantsearch-hooks-web": "^6.30.2",
     "sass": "^1.53.0"
   },
   "devDependencies": {

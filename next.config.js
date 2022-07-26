@@ -12,6 +12,7 @@ const nextConfig = withPWA({
     // disable: process.env.NODE_ENV === "development",
   },
   reactStrictMode: true,
+  swcMinify: true,
   redirects: async () => {
     return [{ source: "/", destination: "/search", permanent: true }];
   },
@@ -21,3 +22,8 @@ const nextConfig = withPWA({
 });
 
 module.exports = nextConfig;
+
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+module.exports = withBundleAnalyzer({});

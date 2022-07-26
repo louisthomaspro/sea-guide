@@ -1,4 +1,4 @@
-import { doc, DocumentData, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore/lite";
 import { ILife } from "../models/Life";
 import { firestore } from "./firestore";
 
