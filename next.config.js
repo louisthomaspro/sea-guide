@@ -13,7 +13,7 @@ const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["https://inaturalist-open-data.s3.amazonaws.com"],
+    domains: ["inaturalist-open-data.s3.amazonaws.com"],
   },
 });
 

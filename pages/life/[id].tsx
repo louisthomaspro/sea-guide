@@ -19,10 +19,13 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
   return (
     <>
       <BackButton />
-      <FavoriteButton />
-      <Typography component="h1">{lifeData.french_common_name}</Typography>
+      <FavoriteButton lifeId={lifeData.id} />
+      <Typography variant="h5" component="h1">
+        {lifeData.french_common_name}
+      </Typography>
       <Typography
         variant="caption"
+        component="div"
         color="text.secondary"
         sx={{ fontStyle: "italic" }}
       >
@@ -41,7 +44,8 @@ const Life: NextPage<{ lifeData: ILife }> = ({ lifeData }) => {
           <ImageListItem key={photo.id}>
             <Image
               loader={() => photo.medium_url}
-              src="/loading-fish.webp" // not working ?
+              src={photo.medium_url}
+              alt={lifeData.scientific_name}
               layout="fill"
             />
           </ImageListItem>

@@ -2,13 +2,29 @@ import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import NProgress from "nprogress";
+
+import "nprogress/nprogress.css";
+NProgress.configure({ showSpinner: false });
 
 export default function NavBar() {
   const router = useRouter();
-  const firstPath = router.pathname.split("/")[1];
-  const [activeTab, setActiveTab] = useState(firstPath);
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      NProgress.start();
+    });
+
+    router.events.on("routeChangeComplete", () => {
+      NProgress.done();
+    });
+
+    router.events.on("routeChangeError", () => {
+      NProgress.done();
+    });
+  }, [router.events]);
 
   return (
     <Paper
@@ -17,9 +33,7 @@ export default function NavBar() {
     >
       <BottomNavigation
         showLabels
-        value={activeTab}
         onChange={(event, newValue) => {
-          setActiveTab(newValue);
           router.push(`/${newValue}`);
         }}
       >

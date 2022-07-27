@@ -4,8 +4,6 @@ import { firestore } from "./firestore";
 
 const collectionName = "lives";
 
-// https://github.com/ShekMak/todo-next/blob/main/firebase/firestore.ts
-
 export const getLife = (id: string) => {
   const document = getDoc(doc(firestore, `${collectionName}/${id}`));
   return document.then((doc) => doc.data())  as Promise<ILife>;
@@ -15,11 +13,11 @@ export const setLife = (data: ILife, id: string) => {
   return setDoc(doc(firestore, collectionName, id), data);
 };
 
-export const setLifeFromINaturalist = async (inaturalistId: string) => {
+export const setLifeFromINaturalist = async (iNaturalistId: string) => {
   let data: any = {};
   try {
     const res = await fetch(
-      `https://api.inaturalist.org/v1/taxa/${inaturalistId}?locale=fr`
+      `https://api.inaturalist.org/v1/taxa/${iNaturalistId}?locale=fr`
     );
     const jsonData: any = await res.json();
     data = jsonData.results[0];
@@ -42,8 +40,7 @@ export const setLifeFromINaturalist = async (inaturalistId: string) => {
       id: element.photo.id,
     });
   });
-  console.log(lifeData);
-  return setDoc(doc(firestore, collectionName, inaturalistId), lifeData);
+  return setDoc(doc(firestore, collectionName, iNaturalistId), lifeData);
 };
 
 export const populate = async () => {

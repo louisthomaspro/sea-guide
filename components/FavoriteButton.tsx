@@ -10,7 +10,7 @@ import { addFavorite, removeFavorite } from "../firebase/user.firestore";
 export default function FavoriteButton(props: any) {
   const [openAddFavorite, setOpenAddFavorite] = useState(false);
   const [openRemoveFavorite, setOpenRemoveFavorite] = useState(false);
-  const [openNeedLogin, setOpenNeedLogin] = useState(false);
+  const [openNeedSignIn, setOpenNeedSignIn] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const { userSession, userData, loading, setUserData } =
@@ -18,7 +18,7 @@ export default function FavoriteButton(props: any) {
 
   const handleFavoriteButton = () => {
     if (!userSession) {
-      setOpenNeedLogin(true);
+      setOpenNeedSignIn(true);
       return;
     }
 
@@ -32,7 +32,7 @@ export default function FavoriteButton(props: any) {
         setIsFavorite(false);
         setOpenRemoveFavorite(true);
       });
-
+    } else {
       addFavorite(props.lifeId, userSession.email).then(() => {
         userData.favorites.push(props.lifeId);
         const newUserData = userData;
@@ -43,9 +43,9 @@ export default function FavoriteButton(props: any) {
     }
   };
 
-  const login = () => {
+  const signIn = () => {
     signInWithGoogle().then(() => {
-      setOpenNeedLogin(false);
+      setOpenNeedSignIn(false);
     });
   };
 
@@ -60,14 +60,14 @@ export default function FavoriteButton(props: any) {
 
   const action = (
     <>
-      <Button color="secondary" size="small" onClick={login}>
+      <Button color="secondary" size="small" onClick={signIn}>
         SIGN IN
       </Button>
       <IconButton
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={() => setOpenNeedLogin(false)}
+        onClick={() => setOpenNeedSignIn(false)}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -90,9 +90,9 @@ export default function FavoriteButton(props: any) {
         message="Removed from favorite!"
       />
       <Snackbar
-        open={openNeedLogin}
+        open={openNeedSignIn}
         autoHideDuration={3000}
-        message="Need to login"
+        message="Need to sign in to add to favorite!"
         action={action}
       />
     </>
